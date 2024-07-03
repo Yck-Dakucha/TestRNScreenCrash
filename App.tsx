@@ -24,6 +24,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -115,4 +119,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+function Navigation(): JSX.Element {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerTintColor: 'black',
+          headerStyle: {backgroundColor: 'white'},
+          headerShadowVisible: false,
+          headerTransparent: false,
+        }}>
+        <Stack.Screen key={'Home'} name={'Home'} getComponent={() => App} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default Navigation;
